@@ -5,6 +5,20 @@ load_dotenv()
 from tavily import TavilyClient
 search= TavilyClient()
 
+from langchain_core.tools import tool
+
+
+@tool
+def movie_search(query: str):
+    """Search the web for movie information."""
+    result = search.search(
+        query=query,
+        max_results=2,
+        search_depth="basic",
+        include_raw_content=False
+    )
+    return str(result)[:16000]
+
 from langchain_groq import ChatGroq
 
 llm = ChatGroq( model="openai/gpt-oss-20b")
@@ -776,7 +790,7 @@ accurate, and structured movie information while minimizing unnecessary web sear
 
 agent = create_agent(
 model=llm,
-tools=[search.search],
+tools=[movie_search],
 system_prompt=system_prompt
 )
 
