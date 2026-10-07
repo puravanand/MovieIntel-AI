@@ -21,7 +21,7 @@ def movie_search(query: str):
 
 from langchain_groq import ChatGroq
 
-llm = ChatGroq( model="openai/gpt-oss-20b")
+llm = ChatGroq( model="openai/gpt-oss-120b")
 
 
 # ============================================================
