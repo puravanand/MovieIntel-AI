@@ -17,7 +17,7 @@ def movie_search(query: str):
         search_depth="basic",
         include_raw_content=False
     )
-    return str(result)[:16000]
+    return str(result)[:8000]
 
 from langchain_groq import ChatGroq
 
